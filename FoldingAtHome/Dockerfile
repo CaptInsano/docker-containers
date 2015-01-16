@@ -38,17 +38,16 @@ RUN \
 EXPOSE 36330 7396
 
 #Expose Config and Logs Folder
-VOLUME ["/config", "/logs"]
+VOLUME ["/config"]
 
 #Create Config File
-ADD config.xml /etc/fahclient/config.xml
+ADD config.xml /config/config.xml
 RUN chmod 777 /etc/fahclient/config.xml
 
 #Link config.xml and log.txt
-RUN ln -s /etc/fahclient/config.xml /config/config.xml
-RUN ln -s /var/lib/fahclient/log.txt /logs/log.txt
+RUN ln -s /config/config.xml /etc/fahclient/config.xml
 
-#Make FAHClient run at start update
-RUN mkdir -p /etc/my_init.d/
-RUN cp /etc/init.d/FAHClient /etc/my_init.d/FAHClient
-RUN chmod +x /etc/my_init.d/FAHClient
+# Add FAHClient to runit
+RUN mkdir /etc/service/FAHClient
+ADD FAHClient-run.sh /etc/service/FAHClient/run
+RUN chmod +x /etc/service/FAHClient/run
