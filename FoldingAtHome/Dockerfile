@@ -40,6 +40,10 @@ EXPOSE 36330 7396
 #Expose Config and Logs Folder
 VOLUME ["/config", "/logs"]
 
+#Create Config File
+ADD config.xml /etc/fahclient/config.xml
+RUN chmod 777 /etc/fahclient/config.xml
+
 #Link config.xml and log.txt
 RUN ln -s /etc/fahclient/config.xml /config/config.xml
 RUN ln -s /var/lib/fahclient/log.txt /logs/log.txt
