@@ -50,6 +50,6 @@ ADD firstrun.sh /etc/my_init.d/firstrun.sh
 RUN chmod +x /etc/my_init.d/firstrun.sh
 
 # Add FAHClient to runit
-RUN mkdir /etc/service/FAHClient
-ADD FAHClient-run.sh /etc/service/FAHClient/run
-RUN chmod +x /etc/service/FAHClient/run
+#RUN mkdir /etc/service/FAHClient
+#ADD FAHClient-run.sh /etc/service/FAHClient/run
+#RUN chmod +x /etc/service/FAHClient/run
