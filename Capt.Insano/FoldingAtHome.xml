@@ -35,11 +35,6 @@
       <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
-	 <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/logs</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
   </Data>
   <WebUI>http://[IP]:[PORT]/</WebUI>
   <Banner>http://i.imgur.com/qcDygxd.png</Banner>
