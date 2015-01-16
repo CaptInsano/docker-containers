@@ -37,15 +37,15 @@ RUN \
 #Expose Ports
 EXPOSE 36330 7396
 
-#Expose Config and Logs Folder
-VOLUME ["/config"]
+#Expose Config Folder
+VOLUME ["/etc/fahclient"]
 
 #Create Config File
-ADD config.xml /config/config.xml
+#ADD config.xml /config/config.xml
 RUN chmod 777 /etc/fahclient/config.xml
 
 #Link config.xml and log.txt
-RUN ln -s /config/config.xml /etc/fahclient/config.xml
+#RUN ln -s /config/config.xml /etc/fahclient/config.xml
 
 # Add FAHClient to runit
 RUN mkdir /etc/service/FAHClient
