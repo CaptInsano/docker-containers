@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>FoldingAtHome</Name>
+  <Description>
+    FoldingAtHome is a project ran by Stanford University to network thousands of computers together, using them to work out the folding of proteins to aid in the research of Alzheimer's, Huntington's, Parkinson's, and many cancers.[br][br]
+    [b][span style='color: #E80000;']Directions:[/span][/b][br]
+	[b]Edit the config.xml file with your preferences (Username/Team etc.)
+	[b]The program can be controlled by FAHControl App from http://folding.stanford.edu/. I cannot get the WebUI to work yet.
+    [b]/config[/b] : this path is used to store the configuration file for FAHClient.[br]
+    [b]/logs[/b] : this path is used to store the log file for FAHClient.[br]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/captinsano/foldingathome</Registry>
+  <Repository>captinsano/foldingathome</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>36330</HostPort>
+        <ContainerPort>36330</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>7396</HostPort>
+        <ContainerPort>7396</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	 <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/logs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <WebUI>http://[IP]:[PORT]/</WebUI>
+  <Banner>http://i.imgur.com/qcDygxd.png</Banner>
+  <Icon>http://i.imgur.com/AKptFCw.png</Icon>
+</Container>
