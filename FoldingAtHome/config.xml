@@ -10,11 +10,12 @@
   <allow v='192.168.1.1/24'/>
 
   <!-- Remote Command Server -->
+  #Change password for remote access
   <password v='PASSWORD'/>
 
   <!-- User Information -->
-  #Change Team Number and Username if desired
-  <team v='0'/>
+  #Change Team Number and Username if desired. Currently folding for UnRAID team!
+  <team v='227802'/>
   <user v='anonymous'/>
 
   <!-- Web Server -->
