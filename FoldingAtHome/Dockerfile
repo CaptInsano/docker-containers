@@ -37,14 +37,19 @@ RUN \
 #Expose Ports
 EXPOSE 36330 7396
 
-#Expose Config and Logs Folder
-VOLUME ["/config", "/logs"]
+#Expose Config Folder
+VOLUME ["/config"]
 
-#Link config.xml and log.txt
-RUN ln -s /etc/fahclient/config.xml /config/config.xml
-RUN ln -s /var/lib/fahclient/log.txt /logs/log.txt
+#Create Config File
+ADD config.xml /etc/fahclient/TeamUnRAID_Config.xml
+RUN mv /etc/fahclient/config.xml /etc/fahclient/config.xml.orig
+RUN ln -s /config/config.xml /etc/fahclient/config.xml
 
-#Make FAHClient run at start update
-RUN mkdir -p /etc/my_init.d/
-RUN cp /etc/init.d/FAHClient /etc/my_init.d/FAHClient
-RUN chmod +x /etc/my_init.d/FAHClient
+#Add firstrun.sh to create config.xml if needed
+ADD firstrun.sh /etc/my_init.d/firstrun.sh
+RUN chmod +x /etc/my_init.d/firstrun.sh
+
+# Add FAHClient to runit
+RUN mkdir /etc/service/FAHClient
+ADD FAHClient-run.sh /etc/service/FAHClient/run
+RUN chmod +x /etc/service/FAHClient/run
