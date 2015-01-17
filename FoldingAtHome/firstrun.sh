@@ -8,15 +8,13 @@ else
 fi
 
 # Check if config exists. If not, copy in the sample config
-if [ -f /config/config.xml ]; then
-  ln -s /config/config.xml /etc/fahclient/config.xml
-  chown nobody:users /config/config.xml
-  chmod 777 /config/config.xml
+if [ -f /etc/fahclient/config.xml ]; then
+  chown nobody:users /etc/fahclient/config.xml
+  chmod 777 /etc/fahclient/config.xml
   echo "Using existing config file."
 else
   echo "Creating config from template."
-  mv /etc/fahclient/TeamUnRAID_Config.xml /config/config.xml
-  ln -s /config/config.xml /etc/fahclient/config.xml
-  chown nobody:users /config/config.xml
-  chmod 777 /config/config.xml
+  wget --no-check-certificate -P /etc/fahclient/ https://github.com/CaptInsano/docker-containers/blob/master/FoldingAtHome/config.xml
+  chown nobody:users /etc/fahclient/config.xml
+  chmod 777 /etc/fahclient/config.xml
 fi

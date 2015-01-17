@@ -38,11 +38,12 @@ RUN \
 EXPOSE 36330 7396
 
 #Expose Config Folder
-VOLUME ["/config"]
+VOLUME ["/etc/fahclient/"]
 
 #Create Config File
-ADD config.xml /etc/fahclient/TeamUnRAID_Config.xml
 RUN mv /etc/fahclient/config.xml /etc/fahclient/config.xml.orig
+ADD config.xml /etc/fahclient/config.xml
+
 
 #Add firstrun.sh to create config.xml if needed
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
