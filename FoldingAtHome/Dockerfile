@@ -43,7 +43,6 @@ VOLUME ["/config"]
 #Create Config File
 ADD config.xml /etc/fahclient/TeamUnRAID_Config.xml
 RUN mv /etc/fahclient/config.xml /etc/fahclient/config.xml.orig
-RUN ln -s /config/config.xml /etc/fahclient/config.xml
 
 #Add firstrun.sh to create config.xml if needed
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
