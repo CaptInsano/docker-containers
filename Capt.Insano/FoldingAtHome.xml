@@ -32,7 +32,7 @@
   <Data>
     <Volume>
       <HostDir></HostDir>
-      <ContainerDir>/config</ContainerDir>
+      <ContainerDir>/etc/fahclient</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
