@@ -16,7 +16,7 @@ if [ -f /etc/fahclient/config.xml ]; then
   else
   
   echo "Creating config from template."
-  wget --no-check-certificate -P /tmp/ https://github.com/CaptInsano/docker-containers/blob/master/FoldingAtHome/config.xml &&
+  wget --no-check-certificate -P /tmp/ https://raw.githubusercontent.com/CaptInsano/docker-containers/testing/FoldingAtHome/config.xml &&
   mv /tmp/config.xml /etc/fahclient/config.xml
   chown nobody:users /etc/fahclient/config.xml
   chmod 777 /etc/fahclient/config.xml
