@@ -6,7 +6,7 @@
     [b][span style='color: #E80000;']Directions:[/span][/b][br]
 	[b]Edit the config.xml file with your preferences (Username/Team etc.)[br]
 	[b]The program can be controlled by FAHControl App from http://folding.stanford.edu/.[br]
-	[b]The WebUI is accessible through  http://IPADDRESS:7396.[b]
+	[b]The WebUI is accessible through  http://IPADDRESS:7396.[br]
     [b]/etc/fahclient[/b] : this path is used to store the configuration file for FAHClient.[br]
   </Description>
   <Registry>https://registry.hub.docker.com/u/captinsano/foldingathome</Registry>
