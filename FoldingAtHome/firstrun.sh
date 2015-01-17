@@ -4,7 +4,7 @@
 if [ -f /var/run/fahclient.pid ]; then
    rm /var/run/fahclient.pid
 else
-   done
+   echo "No previous PID file"
 fi
 
 # Check if config exists. If not, copy in the sample config
