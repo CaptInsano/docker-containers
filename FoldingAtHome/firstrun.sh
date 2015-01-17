@@ -12,10 +12,12 @@ if [ -f /etc/fahclient/config.xml ]; then
   chown nobody:users /etc/fahclient/config.xml
   chmod 777 /etc/fahclient/config.xml
   echo "Using existing config file."
-else
+  
+  else
+  
   echo "Creating config from template."
-  chmod 777 /etc/fahclient
-  wget --no-check-certificate -P /etc/fahclient/ https://github.com/CaptInsano/docker-containers/blob/master/FoldingAtHome/config.xml
+  wget --no-check-certificate -P /tmp/ https://github.com/CaptInsano/docker-containers/blob/master/FoldingAtHome/config.xml &&
+  mv /tmp/config.xml /etc/fahclient/config.xml
   chown nobody:users /etc/fahclient/config.xml
   chmod 777 /etc/fahclient/config.xml
 fi
