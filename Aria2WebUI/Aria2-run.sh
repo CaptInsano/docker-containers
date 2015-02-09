@@ -1,3 +1,4 @@
 #!/bin/bash
 echo "Starting Aria2"
-aria2c --enable-rpc --rpc-listen-all
+/etc/init.d/apache2 start
+/etc/init.d/aria2c start

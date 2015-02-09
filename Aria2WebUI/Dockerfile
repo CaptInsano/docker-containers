@@ -27,15 +27,21 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 #Install Aria2 and Dependencies for Aria2Web
 RUN \
   apt-get update -q && \
-  apt-get install -qy aria2 git nginx && \
+  apt-get install -qy aria2 git apache2 && \
   apt-get clean -y
 
 #Expose Ports
-EXPOSE 6881 80 443
+EXPOSE 6800 6881 80 443
 
 #Expose Config Folder
 VOLUME ["/downloads"]
+VOLUME ["/config"]
 
+#Add Aria2 init script and create empty config
+ADD aria2c_init /etc/init.d/aria2c
+RUN chmod +x /etc/init.d/aria2c
+RUN update-rc.d aria2c defaults
+RUN touch /config/aria2.conf
 
 #Add firstrun.sh to git clone Aria2WebUI if needed
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
