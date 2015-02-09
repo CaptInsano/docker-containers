@@ -28,7 +28,7 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 RUN \
   apt-get update -q && \
   apt-get install -qy aria2 git nginx && \
-  apt-get clean -y && \
+  apt-get clean -y
 
 #Expose Ports
 EXPOSE 6881 80 443
