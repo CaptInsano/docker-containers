@@ -31,9 +31,9 @@ start-stop-daemon -o -c $USER -K -u $USER -x $DAEMON
 status() {
 dbpid=`pgrep -fu $USER $DAEMON`
 if [ -z "$dbpid" ]; then
-echo "aria2c daemon for USER $btsuser: not running."
+echo "aria2c daemon for USER $USER: not running."
 else
-echo "aria2c daemon for USER $btsuser: running (pid $dbpid)"
+echo "aria2c daemon for USER $USER: running (pid $dbpid)"
 fi
 }
 
