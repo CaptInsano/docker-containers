@@ -20,4 +20,4 @@ if [ -f /config/config.xml ]; then
   chown nobody:users /config/config.xml
   chmod 777 /config/config.xml
 fi
-exec /usr/bin/supervisord
+
