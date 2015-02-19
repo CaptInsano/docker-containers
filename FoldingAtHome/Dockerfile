@@ -35,7 +35,7 @@ rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh && \
 
 #Install FAHClient
 apt-get update -q && \
-apt-get install -qy wget supervisor && \
+apt-get install -qy wget && \
 apt-get clean -y && \
 rm -rf /var/lib/apt/lists/* && \
 wget --no-check-certificate -P /tmp/ https://fah.stanford.edu/file-releases/public/release/fahclient/debian-testing-64bit/v7.4/fahclient_7.4.4_amd64.deb && \
