@@ -38,7 +38,7 @@ ADD config.xml /root/config.xml
 #Add firstrun.sh to create config.xml if needed
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
 RUN chmod +x /etc/my_init.d/firstrun.sh
-# startup file
+# startup file to runit
 RUN mkdir -p /etc/service/fahclient
-ADD /etc/service/fahclient/run
+ADD Fahstart.sh /etc/service/fahclient/run
 RUN chmod +x /etc/service/fahclient/run
