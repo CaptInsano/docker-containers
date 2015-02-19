@@ -34,10 +34,11 @@ EXPOSE 36330 7396
 VOLUME ["/config"]
 
 #Create Config File
-RUN mv /etc/fahclient/config.xml /etc/fahclient/config.xml.orig
 ADD config.xml /root/config.xml
 #Add firstrun.sh to create config.xml if needed
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD firstrun.sh /root/start.sh
-RUN chmod +x /root/start.sh
-ENTRYPOINT ["/root/start.sh"]
+ADD firstrun.sh /etc/my_init.d/firstrun.sh
+RUN chmod +x /etc/my_init.d/firstrun.sh
+# startup file
+RUN mkdir -p /etc/service/fahclient
+ADD /etc/service/fahclient/run
+RUN chmod +x /etc/service/fahclient/run
