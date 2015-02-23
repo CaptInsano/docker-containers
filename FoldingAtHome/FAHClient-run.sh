@@ -1,3 +1,3 @@
 #!/bin/bash
 cd /config
-exec /usr/bin/FAHClient --config /config/config.xml
+exec /sbin/setuser nobody /opt/fah/usr/bin/FAHClient --config /config/config.xml
