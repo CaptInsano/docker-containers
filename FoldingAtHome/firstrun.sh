@@ -1,23 +1,16 @@
 #!/bin/bash
-
-#If fahclient.pid is left behind, remove it
-if [ -f /var/run/fahclient.pid ]; then
-   rm /var/run/fahclient.pid
-else
-   echo "No previous PID file"
-fi
-
+chown -R nobody:users /config
 # Check if config exists. If not, copy in the sample config
-if [ -f /etc/fahclient/config.xml ]; then
-  chown nobody:users /etc/fahclient/config.xml
-  chmod 777 /etc/fahclient/config.xml
+if [ -f /config/config.xml ]; then
+  chown nobody:users /config/config.xml
+  chmod 777 /config/config.xml
   echo "Using existing config file."
-  
+
   else
-  
+
   echo "Creating config from template."
-  wget --no-check-certificate -P /tmp/ https://raw.githubusercontent.com/CaptInsano/docker-containers/testing/FoldingAtHome/config.xml &&
-  mv /tmp/config.xml /etc/fahclient/config.xml
-  chown nobody:users /etc/fahclient/config.xml
-  chmod 777 /etc/fahclient/config.xml
+  cp  /root/config.xml /config/config.xml
+  chown nobody:users /config/config.xml
+  chmod 777 /config/config.xml
 fi
+
