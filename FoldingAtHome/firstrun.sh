@@ -1,5 +1,5 @@
 #!/bin/bash
-
+chown -R nobody:users /config
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/config.xml ]; then
   chown nobody:users /config/config.xml
