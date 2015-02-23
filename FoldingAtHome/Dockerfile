@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:0.9.16
 MAINTAINER Capt.Insano
 
 #Dockerfile based on Dockerfiles of smdion
@@ -30,18 +30,18 @@ usermod -g 100 nobody && \
 usermod -d /home nobody && \
 chown -R nobody:users /home && \
 
-# Disable SSH
-rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh && \
-
 #Install FAHClient
 apt-get update -q && \
 apt-get install -qy wget && \
 apt-get clean -y && \
 rm -rf /var/lib/apt/lists/* && \
 wget --no-check-certificate -P /tmp/ https://fah.stanford.edu/file-releases/public/release/fahclient/debian-testing-64bit/v7.4/fahclient_7.4.4_amd64.deb && \
-dpkg -i --force-depends /tmp/fahclient_7.4.4_amd64.deb && \
+mkdir -p /opt/fah && \
+dpkg -x /tmp/fahclient_7.4.4_amd64.deb /opt/fah  && \
 rm /tmp/fahclient_7.4.4_amd64.deb && \
-
+chown -R nobody:users /opt/fah && \
+apt-get purge --remove wget -y && \
+apt-get autoremove -y && \
 
 # fix up start files and make executable
 chmod +x /etc/my_init.d/firstrun.sh && \
