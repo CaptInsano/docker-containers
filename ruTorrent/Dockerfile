@@ -70,7 +70,7 @@ RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorren
 
 RUN mkdir /config
 RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
-COPY rtorrent.rc /config/.rtorrent.rc
+COPY rtorrent.rc /rtorrent.rc
 RUN cd /config &&\
     mkdir .rtorrentsession &&\
     chown -R torrent /config &&\
