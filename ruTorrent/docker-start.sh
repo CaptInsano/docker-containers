@@ -12,10 +12,14 @@ if [ -f /config/.rtorrent.rc ]; then
   else
 
   echo "Creating config from template."
-  cp  /root/rtorrent.rc /config/.rtorrent.rc
+  cp  /rtorrent.rc /config/.rtorrent.rc
   chown torrent:users /config/.rtorrent.rc
   chmod 777 /config/.rtorrent.rc
 fi
+
+mkdir /config/.rtorrentsession
+chown torrent:www-data /config/.rtorrentsession
+chmod 777 /config/.rtorrentsession
 
 set -ex
 
