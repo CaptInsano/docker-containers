@@ -75,16 +75,18 @@ RUN cd /config &&\
     mkdir .rtorrentsession &&\
     chown -R torrent /config &&\
     chgrp www-data .rtorrentsession &&\
-	chmod -R 755 /config 
+	chmod -R 777 /config 
 	
 RUN mkdir /download
 RUN cd /download &&\
     mkdir watch &&\
     chown -R torrent /download &&\
-    chmod -R 775 /download
+    chmod -R 777 /download
 
 COPY docker-*.sh /
+RUN chmod 777 /docker-*.sh
 COPY rutorrent.sh /
+RUN chmod 777 /rutorrent.sh
 
 EXPOSE 80 45566 9527
 
