@@ -5,7 +5,7 @@ export HOME=~torrent
 cd "$HOME"
 
 TMUX_BIN=${TMUX_BIN:-/usr/bin/tmux}
-LOCK_FILE="/torrent/download/.rtorrent.lock"
+LOCK_FILE="/download/.rtorrent.lock"
 
 (
     # Make sure that only an instance of rtorrent form this container

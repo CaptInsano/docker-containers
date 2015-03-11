@@ -2,8 +2,8 @@
 set -ex
 
 reset_permission() {
-    chown -R torrent. /torrent/download
-    chown -R torrent. /torrent/watch
+    chown -R torrent /download
+    chown -R torrent /download/watch
 }
 
 reset_permission

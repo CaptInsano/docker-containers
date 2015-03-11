@@ -68,21 +68,27 @@ RUN rm /etc/nginx/sites-available/* &&\
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
-RUN mkdir /torrent
-RUN adduser --quiet --disabled-password --home /torrent/home --gecos "" --uid 1000 torrent
-COPY rtorrent.rc /torrent/home/.rtorrent.rc
-RUN cd /torrent &&\
-    mkdir download watch home/.rtorrentsession &&\
-    chown -R torrent /torrent &&\
-    chgrp www-data home/.rtorrentsession &&\
-	chmod -R 755 /torrent 
+RUN mkdir /config
+RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
+COPY rtorrent.rc /config/.rtorrent.rc
+RUN cd /config &&\
+    mkdir .rtorrentsession &&\
+    chown -R torrent /config &&\
+    chgrp www-data .rtorrentsession &&\
+	chmod -R 755 /config 
+	
+RUN mkdir /download
+RUN cd /download &&\
+    mkdir watch &&\
+    chown -R torrent /download &&\
+    chmod -R 775 /download
 
 COPY docker-*.sh /
 COPY rutorrent.sh /
 
 EXPOSE 80 45566 9527
 
-VOLUME ["/torrent/home", "/torrent/download", "/torrent/watch"]
+VOLUME ["/config", "/download", "/download/watch"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
 
