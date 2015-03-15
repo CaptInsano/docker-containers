@@ -5,14 +5,14 @@ if [ -z "$EDGE" ]; then
 echo "edge not requested, using ruTorrent and Plugins release 3.6"
 else
 echo "getting latest git version of ruTorrent and Plugins"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse"
-apt-get update -q
-apt-get install -qy git
+#add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse"
+#add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse"
+#apt-get update -q
+#apt-get install -qy git
 rm -rf /var/www/rutorrent
 git clone -b master https://github.com/Novik/ruTorrent.git /var/www/rutorrent
 rm /var/www/rutorrent/conf/config.php
-cp /config.php /var/www/conf/config.php
+cp /config.php /var/www/rutorrent/conf/config.php
 chmod -R 755 /var/www
 chown -R www-data. /var/www
 fi

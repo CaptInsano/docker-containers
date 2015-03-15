@@ -31,7 +31,8 @@ RUN \
         tmux\
         unrar-free\
         unzip\
-        wget &&\
+        git\
+		wget &&\
     rm -rf /var/lib/apt/lists/*
 
 # grab gosu for easy step-down from root
