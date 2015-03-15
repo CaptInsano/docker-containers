@@ -8,6 +8,7 @@
 	[b]Mount the internal directory ""/download"" to a location on your array for rTorrent downloads[br]
 	[b]By default, the WebUI is accessible through  http://IPADDRESS:8089.[br]
     [b]rTorrent config is done by editing the .rtorrent.rc file in /config[br]
+	[b]Change EDGE=1 (under Advanced View) if you would prefer the latest GIT version of ruTorrent and Plugins[br]
   </Description>
   <Registry>https://registry.hub.docker.com/u/captinsano/rutorrent/</Registry>
   <Repository>captinsano/rutorrent</Repository>
@@ -33,6 +34,12 @@
       </Port>
     </Publish>
   </Networking>
+  <Environment>
+	<Variable>
+		<Name>EDGE</Name>
+		<Value></Value>
+	</Variable>
+	</Environment>
   <Data>
     <Volume>
       <HostDir></HostDir>
