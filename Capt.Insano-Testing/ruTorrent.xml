@@ -23,8 +23,8 @@
         <Protocol>tcp</Protocol>
       </Port>
 	  <Port>
-        <HostPort>45566-45576</HostPort>
-        <ContainerPort>45566-45576</ContainerPort>
+        <HostPort>45566</HostPort>
+        <ContainerPort>45566</ContainerPort>
         <Protocol>tcp</Protocol>
       </Port>
 	  <Port>
