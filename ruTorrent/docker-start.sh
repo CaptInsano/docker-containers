@@ -1,5 +1,19 @@
 #!/bin/sh
 
+# Does the user want the edge version?
+if [ -z "$EDGE" ]; then
+echo "edge not requested, using ruTorrent and Plugins release 3.6"
+else
+echo "getting latest git version of ruTorrent and Plugins"
+rm -rf /var/www/rutorrent
+git clone -b master https://github.com/Novik/ruTorrent.git /var/www/rutorrent
+rm /var/www/rutorrent/conf/config.php
+cp /config.php /var/www/rutorrent/conf/config.php
+chmod -R 755 /var/www
+chown -R www-data. /var/www
+fi
+
+# Continue Docker Start
 chown -R nobody:users /config
 chown -R nobody:users /download
 

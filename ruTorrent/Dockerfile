@@ -31,7 +31,8 @@ RUN \
         tmux\
         unrar-free\
         unzip\
-        wget &&\
+        git\
+		wget &&\
     rm -rf /var/lib/apt/lists/*
 
 # grab gosu for easy step-down from root
@@ -42,7 +43,9 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
     && rm /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu
 
-RUN \
+COPY config.php /config.php
+	
+	RUN \
     cd /var/www &&\
     # install rutorrent
     wget -q -O rutorrent.tar.gz $RUTORRENT_URI &&\
@@ -54,11 +57,11 @@ RUN \
     wget -q -O plugins.tar.gz $RUTORRENT_PLUGINS_URI &&\
     echo "$RUTORRENT_PLUGINS_SHA1  plugins.tar.gz" | sha1sum -c - &&\
     tar xf plugins.tar.gz &&\
-    rm plugins.tar.gz &&\
+    rm plugins.tar.gz &&\	
+	rm /var/www/rutorrent/conf/config.php &&\
+	cp /config.php /var/www/rutorrent/conf/config.php &&\
     # correct files permission
     chmod -R 755 /var/www &&\
-    # fix curl not found
-    sed -i 's#\(\s*"curl"\s*=>\s*'"'"'\)''\('"'"'.*\)#\1/usr/bin/curl\2#g' /var/www/rutorrent/conf/config.php &&\
     chown -R www-data. /var/www
 
 # remove default nginx config
@@ -75,9 +78,7 @@ RUN chown -R torrent /config &&\
 	chmod -R 777 /config 
 	
 RUN mkdir /download
-RUN cd /download &&\
-    mkdir watch &&\
-    chown -R torrent /download &&\
+RUN chown -R torrent /download &&\
     chmod -R 777 /download
 
 COPY docker-*.sh /
@@ -85,9 +86,10 @@ RUN chmod 777 /docker-*.sh
 COPY rutorrent.sh /
 RUN chmod 777 /rutorrent.sh
 
-EXPOSE 80 45566 9527
 
-VOLUME ["/config", "/download", "/download/watch"]
+EXPOSE 80 45566-45576 9527
+
+VOLUME ["/config", "/download",]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
 
