@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>ruTorrent</Name>
+  <Description>
+    [br]This is a container for rTorrent (a powerful and flexible torrent client) and ruTorrent (a web based frontend for rTorrent). ruTorrent contains many plugins to improve rTorrent use including RSS support.[br]
+    [b][span style='color: #E80000;']Directions:[/span][/b][br]
+	[b]Mount the internal directory ""/config"" to a location on your array for rTorrent config and session files[br]
+	[b]Mount the internal directory ""/download"" to a location on your array for rTorrent downloads[br]
+	[b]By default, the WebUI is accessible through  http://IPADDRESS:8089.[br]
+    [b]rTorrent config is done by editing the .rtorrent.rc file in /config[br]
+	[b]Change EDGE variable to 1 if you would prefer the latest GIT version of ruTorrent and Plugins[br]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/captinsano/testing/</Registry>
+  <Repository>captinsano/testing</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>8089</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>45566-45576</HostPort>
+        <ContainerPort>45566-45576</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>9527</HostPort>
+        <ContainerPort>9527</ContainerPort>
+        <Protocol>udp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Environment>
+	<Variable>
+		<Name>EDGE</Name>
+		<Value></Value>
+	</Variable>
+	</Environment>
+  <Data>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/download</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <WebUI>http://[IP]:[PORT:8089]/</WebUI>
+  <Icon>http://i.imgur.com/LWfuAG2.png</Icon>
+</Container>
