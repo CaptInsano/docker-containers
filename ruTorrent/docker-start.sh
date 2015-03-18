@@ -15,7 +15,7 @@ git clone -b master https://github.com/Novik/ruTorrent.git /var/www/rutorrent
 rm /var/www/rutorrent/conf/config.php
 cp /config.php /var/www/rutorrent/conf/config.php
 fi
-chmod -R 777 /var/www
+chmod -R 755 /var/www
 chown -R www-data. /var/www
 fi
 
@@ -25,7 +25,7 @@ chown -R nobody:users /download
 
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/.rtorrent.rc ]; then
-  chown nobody:users /config/.rtorrent.rc
+  chown torrent:users /config/.rtorrent.rc
   chmod 777 /config/.rtorrent.rc
   echo "Using existing config file."
 
@@ -33,12 +33,12 @@ if [ -f /config/.rtorrent.rc ]; then
 
   echo "Creating config from template."
   cp  /rtorrent.rc /config/.rtorrent.rc
-  chown nobody:users /config/.rtorrent.rc
+  chown torrent:users /config/.rtorrent.rc
   chmod 777 /config/.rtorrent.rc
 fi
 
 mkdir /config/.rtorrentsession
-chown nobody:www-data /config/.rtorrentsession
+chown torrent:www-data /config/.rtorrentsession
 chmod 777 /config/.rtorrentsession
 
 set -ex
@@ -46,6 +46,6 @@ set -ex
 service nginx start
 service php5-fpm start
 
-cd ~nobody
-exec gosu nobody /rutorrent.sh
+cd ~torrent
+exec gosu torrent /rutorrent.sh
 
