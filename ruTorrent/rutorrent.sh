@@ -6,7 +6,7 @@ cd "$HOME"
 
 LOCK_FILE="/download/.rtorrent.lock"
 
-(
+
     # Make sure that only an instance of rtorrent form this container
     # handling files in download folder
     if ! flock --nonblock --exclusive 9; then
@@ -20,5 +20,5 @@ LOCK_FILE="/download/.rtorrent.lock"
 
 	/usr/bin/tmux new-session -d rtorrent
 
-) 9>$LOCK_FILE 2>&1
+
 
