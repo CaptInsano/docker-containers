@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-export HOME=~torrent
+export HOME=~nobody
 cd "$HOME"
 
 TMUX_BIN=${TMUX_BIN:-/usr/bin/tmux}
