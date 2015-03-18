@@ -42,5 +42,5 @@ service nginx start
 service php5-fpm start
 
 cd ~nobody
-exec gosu nobody /usr/bin/tmux new-session -d rtorrent rtorrent
+exec gosu nobody /usr/bin/tmux new-session -d rtorrent
 
