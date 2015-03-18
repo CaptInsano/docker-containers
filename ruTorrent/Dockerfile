@@ -72,13 +72,13 @@ COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
 RUN mkdir /config
-RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
+RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 nobody
 COPY rtorrent.rc /rtorrent.rc
-RUN chown -R torrent /config &&\
+RUN chown -R nobody:users /config &&\
 	chmod -R 777 /config 
 	
 RUN mkdir /download
-RUN chown -R torrent /download &&\
+RUN chown -R nobody:users /download &&\
     chmod -R 777 /download
 
 COPY docker-*.sh /
@@ -89,7 +89,7 @@ RUN chmod 777 /rutorrent.sh
 
 EXPOSE 80 45566-45576 9527
 
-VOLUME ["/config", "/download",]
+VOLUME ["/config", "/download", "/var/www/rutorrent"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
 
