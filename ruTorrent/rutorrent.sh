@@ -13,9 +13,6 @@ LOCK_FILE="/download/.rtorrent.lock"
     if ! flock --nonblock --exclusive 9; then
         >&2 echo 'Some container are managing download folder'
         exit 1
-	else
-		echo "starting rTorrent"
-		exit 1
     fi
 
     # rtorrent locking does not play well with docker container
@@ -24,8 +21,12 @@ LOCK_FILE="/download/.rtorrent.lock"
 
     "$TMUX_BIN" new-session -d rtorrent
 
-    TMUX_SERVER_PID="$("$TMUX_BIN" run-shell 'echo $TMUX_BIN' | cut -d ',' -f 2)"
-echo rTorrent PID: $TMUX_SERVER_PID
+    TMUX_SERVER_PID="$("$TMUX_BIN" run-shell 'echo $TMUX' | cut -d ',' -f 2)"
+    set +x
+    # wait until tmux server died
+    while sleep 1; do
+        # exit if cannot send signal to tmux's server
+        kill -0 $TMUX_SERVER_PID > /dev/null 2>&1 || exit 0
     done
 ) 9>$LOCK_FILE 2>&1
 
