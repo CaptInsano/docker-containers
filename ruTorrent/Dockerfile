@@ -61,7 +61,7 @@ COPY config.php /config.php
 	rm /var/www/rutorrent/conf/config.php &&\
 	cp /config.php /var/www/rutorrent/conf/config.php &&\
     # correct files permission
-    chmod -R 755 /var/www &&\
+    chmod -R 777 /var/www &&\
     chown -R www-data. /var/www
 
 # remove default nginx config
@@ -89,7 +89,7 @@ RUN chmod 777 /rutorrent.sh
 
 EXPOSE 80 45566-45576 9527
 
-VOLUME ["/config", "/download",]
+VOLUME ["/config", "/download", "/var/www/rutorrent",]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
 

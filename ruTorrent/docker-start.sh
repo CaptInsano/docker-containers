@@ -15,13 +15,9 @@ git clone -b master https://github.com/Novik/ruTorrent.git /var/www/rutorrent
 rm /var/www/rutorrent/conf/config.php
 cp /config.php /var/www/rutorrent/conf/config.php
 fi
-chmod -R 755 /var/www
+chmod -R 777 /var/www
 chown -R www-data. /var/www
 fi
-
-# Continue Docker Start
-chown -R nobody:users /config
-chown -R nobody:users /download
 
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/.rtorrent.rc ]; then
@@ -36,6 +32,11 @@ if [ -f /config/.rtorrent.rc ]; then
   chown torrent:users /config/.rtorrent.rc
   chmod 777 /config/.rtorrent.rc
 fi
+# Continue Docker Start
+chown -R torrent:users /config
+chmod -R 777 /config
+chown -R torrent:users /download
+chmod -R 777 /download
 
 mkdir /config/.rtorrentsession
 chown torrent:www-data /config/.rtorrentsession
