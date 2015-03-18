@@ -33,7 +33,7 @@ chown -R nobody:users /download
 chmod -R 777 /download
 
 mkdir /config/.rtorrentsession
-chown nobody. /config/.rtorrentsession
+chown nobody:www-data /config/.rtorrentsession
 chmod 777 /config/.rtorrentsession
 
 set -ex
