@@ -48,7 +48,7 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 COPY config.php /config.php
 
 RUN mkdir /config &&\
-	chmod -R 777 /config &&\
+	chmod -R 777 /config
 	
 COPY rtorrent.rc /rtorrent.rc
 	
