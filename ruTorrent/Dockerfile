@@ -45,13 +45,6 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 
 COPY config.php /config.php
 
-# Configure user nobody to match unRAID's settings
- RUN \
- usermod -u 99 nobody && \
- usermod -g 100 nobody && \
- usermod -d /home nobody && \
- chown -R nobody:users /home
-
 RUN mkdir /config
  
 RUN \
@@ -83,7 +76,9 @@ COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
 
-RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
+RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent &&\
+	usermod -g 100 torrent
+	
 COPY rtorrent.rc /rtorrent.rc
 RUN chown -R torrent /config &&\
 	chmod -R 777 /config 
