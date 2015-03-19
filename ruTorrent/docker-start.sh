@@ -19,6 +19,18 @@ chmod -R 777 /config
 chown -R www-data. /config
 fi
 
+# Check if htpasswd exists. If not, copy in the sample htpasswd
+if [ -f /config/.htpasswd ]; then
+  echo "Using existing AUTH file."
+
+  else
+
+  echo "Creating htpasswd from template, Username/Password = admin/admin"
+  cp  /htpasswd /config/.htpasswd
+  chown torrent:www-data /config/.htpasswd
+  chmod 777 /config/.htpasswd
+fi
+
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/.rtorrent.rc ]; then
   chown torrent:users /config/.rtorrent.rc

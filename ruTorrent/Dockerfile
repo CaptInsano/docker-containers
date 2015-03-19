@@ -44,9 +44,9 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
     && chmod +x /usr/local/bin/gosu
 
 COPY config.php /config.php
+COPY htpasswd /htpasswd
 
-RUN mkdir /config
-COPY htpasswd /config/.htpasswd 
+RUN mkdir /config 
 
 RUN \
     cd /config &&\
