@@ -44,9 +44,11 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
     && chmod +x /usr/local/bin/gosu
 
 COPY config.php /config.php
-	
-	RUN \
-    cd /var/www &&\
+
+RUN mkdir /config
+ 
+RUN \
+    cd /config &&\
     # install rutorrent
     wget -q -O rutorrent.tar.gz $RUTORRENT_URI &&\
     echo "$RUTORRENT_SHA1  rutorrent.tar.gz" | sha1sum -c - &&\
@@ -58,9 +60,11 @@ COPY config.php /config.php
     echo "$RUTORRENT_PLUGINS_SHA1  plugins.tar.gz" | sha1sum -c - &&\
     tar xf plugins.tar.gz &&\
     rm plugins.tar.gz &&\	
-	rm /var/www/rutorrent/conf/config.php &&\
-	cp /config.php /var/www/rutorrent/conf/config.php &&\
-    # correct files permission
+	rm /config/rutorrent/conf/config.php &&\
+	cp /config.php /config/rutorrent/conf/config.php &&\
+    #create symbolic link to rutorrent install for nginx
+	ln -s /config/rutorrent /var/www/rutorrent &&\
+	# correct files permission
     chmod -R 777 /var/www &&\
     chown -R www-data. /var/www
 
@@ -71,8 +75,10 @@ RUN rm /etc/nginx/sites-available/* &&\
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
-RUN mkdir /config
-RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
+
+RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent &&\
+	usermod -g 100 torrent
+	
 COPY rtorrent.rc /rtorrent.rc
 RUN chown -R torrent /config &&\
 	chmod -R 777 /config 
@@ -89,7 +95,7 @@ RUN chmod 777 /rutorrent.sh
 
 EXPOSE 80 45566-45576 9527
 
-VOLUME ["/config", "/download", "/var/www/rutorrent",]
+VOLUME ["/config", "/download",]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
 

@@ -5,18 +5,18 @@ if [ -z "$EDGE" ]; then
 echo "edge not requested, using ruTorrent and Plugins release 3.6"
 else
 echo "getting latest git version of ruTorrent and Plugins"
-if [ -f /var/www/rutorrent/.gitignore ]; then
+if [ -f /config/rutorrent/.gitignore ]; then
 echo "prev GIT version detected, updating"
-git -C /var/www/rutorrent/ pull
+git -C /config/rutorrent/ pull
 else
 echo "no prev GIT version detected, cloning"
-rm -rf /var/www/rutorrent
-git clone -b master https://github.com/Novik/ruTorrent.git /var/www/rutorrent
-rm /var/www/rutorrent/conf/config.php
-cp /config.php /var/www/rutorrent/conf/config.php
+rm -rf /config/rutorrent
+git clone -b master https://github.com/Novik/ruTorrent.git /config/rutorrent
+rm /config/rutorrent/conf/config.php
+cp /config.php /config/rutorrent/conf/config.php
 fi
-chmod -R 777 /var/www
-chown -R www-data. /var/www
+chmod -R 777 /config
+chown -R www-data. /config
 fi
 
 # Check if config exists. If not, copy in the sample config
