@@ -51,7 +51,9 @@ COPY config.php /config.php
  usermod -g 100 nobody && \
  usermod -d /home nobody && \
  chown -R nobody:users /home
-	
+
+RUN mkdir /config
+ 
 RUN \
     cd /config &&\
     # install rutorrent
@@ -80,7 +82,7 @@ RUN rm /etc/nginx/sites-available/* &&\
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
-RUN mkdir /config
+
 RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
 COPY rtorrent.rc /rtorrent.rc
 RUN chown -R torrent /config &&\
