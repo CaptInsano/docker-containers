@@ -46,7 +46,8 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 COPY config.php /config.php
 
 RUN mkdir /config
- 
+COPY htpasswd /config/.htpasswd 
+
 RUN \
     cd /config &&\
     # install rutorrent
@@ -77,7 +78,8 @@ RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorren
 
 
 RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent &&\
-	usermod -g 100 torrent
+	usermod -g users torrent &&\
+	usermod -a -G www-data torrent
 	
 COPY rtorrent.rc /rtorrent.rc
 RUN chown -R torrent /config &&\
