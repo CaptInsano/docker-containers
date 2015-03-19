@@ -15,25 +15,31 @@ git clone -b master https://github.com/Novik/ruTorrent.git /config/rutorrent
 rm /config/rutorrent/conf/config.php
 cp /config.php /config/rutorrent/conf/config.php
 fi
-chmod -R 777 /var/www
-chown -R www-data. /var/www
+chmod -R 777 /config
+chown -R www-data. /config
 fi
 
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/.rtorrent.rc ]; then
+  chown torrent:users /config/.rtorrent.rc
+  chmod 777 /config/.rtorrent.rc
   echo "Using existing config file."
-else
+
+  else
+
   echo "Creating config from template."
   cp  /rtorrent.rc /config/.rtorrent.rc
+  chown torrent:users /config/.rtorrent.rc
+  chmod 777 /config/.rtorrent.rc
 fi
 # Continue Docker Start
-chown -R nobody:users /config
+chown -R torrent:users /config
 chmod -R 777 /config
-chown -R nobody:users /download
+chown -R torrent:users /download
 chmod -R 777 /download
 
 mkdir /config/.rtorrentsession
-chown nobody:www-data /config/.rtorrentsession
+chown torrent:www-data /config/.rtorrentsession
 chmod 777 /config/.rtorrentsession
 
 set -ex
@@ -41,6 +47,6 @@ set -ex
 service nginx start
 service php5-fpm start
 
-cd ~nobody
-exec gosu nobody "/usr/bin/tmux new-session -d rtorrent"
+cd ~torrent
+exec gosu torrent /rutorrent.sh
 

@@ -2,7 +2,7 @@
 set -ex
 
 reset_permission() {
-    chown -R nobody:users /download
+    chown -R torrent /download
 	chmod -R 777 /download
 }
 

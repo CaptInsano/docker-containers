@@ -43,24 +43,14 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
     && rm /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu
 
-
-	
 COPY config.php /config.php
 
-RUN mkdir /config &&\
-	chmod -R 777 /config
-	
-COPY rtorrent.rc /rtorrent.rc
-	
-RUN mkdir /download
-RUN chmod -R 777 /download &&\
-	chown -R nobody:users /download
-	
-COPY docker-*.sh /
-RUN chmod 777 /docker-*.sh
-
-COPY rutorrent.sh /
-RUN chmod 777 /rutorrent.sh	
+# Configure user nobody to match unRAID's settings
+ RUN \
+ usermod -u 99 nobody && \
+ usermod -g 100 nobody && \
+ usermod -d /home nobody && \
+ chown -R nobody:users /home
 	
 RUN \
     cd /config &&\
@@ -82,21 +72,29 @@ RUN \
 	# correct files permission
     chmod -R 777 /var/www &&\
     chown -R www-data. /var/www
-	
-# Configure user nobody to match unRAID's settings
- RUN \
- usermod -u 99 nobody && \
- usermod -g 100 nobody && \
- usermod -d /config nobody && \
- chown -R nobody:users /config	
 
 # remove default nginx config
 RUN rm /etc/nginx/sites-available/* &&\
     rm /etc/nginx/sites-enabled/*
-
 # add nginx config for rutorrent
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
+
+RUN mkdir /config
+RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent
+COPY rtorrent.rc /rtorrent.rc
+RUN chown -R torrent /config &&\
+	chmod -R 777 /config 
+	
+RUN mkdir /download
+RUN chown -R torrent /download &&\
+    chmod -R 777 /download
+
+COPY docker-*.sh /
+RUN chmod 777 /docker-*.sh
+COPY rutorrent.sh /
+RUN chmod 777 /rutorrent.sh
+
 
 EXPOSE 80 45566-45576 9527
 
