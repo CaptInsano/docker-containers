@@ -51,11 +51,6 @@
       <ContainerDir>/download</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
-	<Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/var/www/rutorrent</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
   </Data>
   <WebUI>http://[IP]:[PORT:8089]/</WebUI>
   <Icon>http://i.imgur.com/LWfuAG2.png</Icon>
