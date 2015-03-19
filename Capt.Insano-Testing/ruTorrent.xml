@@ -23,6 +23,11 @@
         <Protocol>tcp</Protocol>
       </Port>
 	  <Port>
+        <HostPort>8099</HostPort>
+        <ContainerPort>443</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
         <HostPort>45566</HostPort>
         <ContainerPort>45566</ContainerPort>
         <Protocol>tcp</Protocol>
