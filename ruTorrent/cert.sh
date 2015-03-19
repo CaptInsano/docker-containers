@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #this script generates a generic self-signed SSL certificate
-
+mkdir /config/certs
 #create generic server.key and server.csr
 openssl req -new -newkey rsa:2048 -nodes -out /config/certs/server.csr -keyout /config/certs/server.key -subj "/C=/ST=07/L=/O=unraid/CN=unraid"
 #Remove Passphrase from Key 
