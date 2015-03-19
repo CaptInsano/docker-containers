@@ -46,7 +46,7 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 COPY config.php /config.php
 COPY htpasswd /htpasswd
 
-RUN mkdir /config 
+RUN mkdir /config /config/certs
 
 RUN \
     cd /config &&\
@@ -93,9 +93,10 @@ COPY docker-*.sh /
 RUN chmod 777 /docker-*.sh
 COPY rutorrent.sh /
 RUN chmod 777 /rutorrent.sh
+COPY cert.sh /
+RUN chmod 777 /cert.sh
 
-
-EXPOSE 80 45566-45576 9527
+EXPOSE 80 443 45566-45576 9527
 
 VOLUME ["/config", "/download",]
 ENTRYPOINT ["/docker-entrypoint.sh"]

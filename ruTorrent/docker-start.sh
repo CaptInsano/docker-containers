@@ -31,6 +31,17 @@ if [ -f /config/.htpasswd ]; then
   chmod 777 /config/.htpasswd
 fi
 
+# Check if SSL Cert exists. If not, create one
+if [ -f /config/certs/server.crt ]; then
+  echo "Using existing SSL Cert."
+
+  else
+
+  echo "Creating generic SSL Cert"
+  sh /cert.sh
+  chown -R torrent:www-data /config/certs 
+fi
+
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/.rtorrent.rc ]; then
   chown torrent:users /config/.rtorrent.rc
