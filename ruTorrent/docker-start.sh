@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Does the user want the edge version?
-sh /edge.sh
+/bin/bash /edge.sh
 
-# Set up BASIC Auth and SSL if wanted
-sh /ssl.sh
+# Set up BASIC Auth and SSL
+/bin/bash /ssl.sh
 
 # Check if config exists. If not, copy in the sample config
 if [ -f /config/.rtorrent.rc ]; then

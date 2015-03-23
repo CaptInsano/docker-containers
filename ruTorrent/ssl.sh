@@ -10,10 +10,6 @@ else
 	chown torrent:www-data /config/.htpasswd
 	chmod 777 /config/.htpasswd
 fi
-# Set up SSL if wanted by user
-if [ "$SSL" == "1" ]
-then
-echo "Setting up SSL"
 # Check if SSL Cert exists. If not, create one
 if [ -f /config/certs/server.crt ]; then
 	echo "Using existing SSL Cert."
@@ -29,10 +25,4 @@ else
 	rm /config/certs/server.key.orig
 #Generating a Self-Signed Certificate
 	openssl x509 -req -days 365 -in /config/certs/server.csr -signkey /config/certs/server.key -out /config/certs/server.crt
-fi
-elif [ "$SSL" == "0" ]
-then
-        echo "SSL=0, SSL not requested"
-else
-        echo "SSL variable not set"
 fi
