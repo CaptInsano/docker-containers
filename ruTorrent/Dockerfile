@@ -13,6 +13,7 @@ RUN \
     # ffmpeg ppa
     add-apt-repository -y ppa:mc3man/trusty-media &&\
     add-apt-repository -y ppa:nginx/stable &&\
+	add-apt-repository -y ppa:jalaziz/rtorrent &&\
     rm -rf /var/lib/apt/lists/*
 
 
@@ -76,6 +77,9 @@ RUN rm /etc/nginx/sites-available/* &&\
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
+#set default umask to 002
+RUN rm /etc/login.defs
+COPY login.defs /etc/login.defs
 
 RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent &&\
 	usermod -g users torrent &&\
@@ -93,12 +97,13 @@ COPY docker-*.sh /
 RUN chmod 777 /docker-*.sh
 COPY rutorrent.sh /
 RUN chmod 777 /rutorrent.sh
-COPY cert.sh /
-RUN chmod 777 /cert.sh
+COPY ssl.sh /
+RUN chmod 777 /ssl.sh
+COPY edge.sh /
+RUN chmod 777 /edge.sh
 
 EXPOSE 80 443 45566-45576 9527
 
 VOLUME ["/config", "/download",]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
-
