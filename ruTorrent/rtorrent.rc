@@ -2,6 +2,9 @@
 # This is an example resource file for rTorrent.
 # uncomment extra options you wish to enable.
 
+#Set umask within rtorrent
+system.umask.set=0002
+
 # SCGI port for ruTorrent frontend
 scgi_port = 127.0.0.1:5000
 
