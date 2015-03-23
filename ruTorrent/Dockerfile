@@ -13,6 +13,7 @@ RUN \
     # ffmpeg ppa
     add-apt-repository -y ppa:mc3man/trusty-media &&\
     add-apt-repository -y ppa:nginx/stable &&\
+	add-apt-repository -y ppa:jalaziz/rtorrent &&\
     rm -rf /var/lib/apt/lists/*
 
 
@@ -44,9 +45,10 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
     && chmod +x /usr/local/bin/gosu
 
 COPY config.php /config.php
+COPY htpasswd /htpasswd
 
 RUN mkdir /config
- 
+
 RUN \
     cd /config &&\
     # install rutorrent
@@ -75,9 +77,13 @@ RUN rm /etc/nginx/sites-available/* &&\
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
+#set default umask to 002
+RUN rm /etc/login.defs
+COPY login.defs /etc/login.defs
 
 RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 torrent &&\
-	usermod -g 100 torrent
+	usermod -g users torrent &&\
+	usermod -a -G www-data torrent
 	
 COPY rtorrent.rc /rtorrent.rc
 RUN chown -R torrent /config &&\
@@ -91,11 +97,13 @@ COPY docker-*.sh /
 RUN chmod 777 /docker-*.sh
 COPY rutorrent.sh /
 RUN chmod 777 /rutorrent.sh
+COPY ssl.sh /
+RUN chmod 777 /ssl.sh
+COPY edge.sh /
+RUN chmod 777 /edge.sh
 
-
-EXPOSE 80 45566-45576 9527
+EXPOSE 80 443 45566-45576 9527
 
 VOLUME ["/config", "/download",]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
-
