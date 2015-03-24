@@ -45,9 +45,11 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 # Copy in start scripts
 COPY docker-*.sh /
 RUN chmod 777 /docker-*.sh
+COPY test.sh /
+RUN chmod 777 /test.sh
 	
 # Expose Port
 EXPOSE 10001
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/usr/local/tonido/tonido.sh start"]
+
+CMD ["/test.sh"]
