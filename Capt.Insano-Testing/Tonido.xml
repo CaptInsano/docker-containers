@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>Tonido</Name>
+  <Description>
+    [br]Test container for Tonido[br]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/captinsano/testing/</Registry>
+  <Repository>captinsano/testing</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>10001</HostPort>
+        <ContainerPort>10001</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/usr/local/tonido</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <WebUI>http://[IP]:[PORT:10001]/</WebUI>
+  <Icon>http://i.imgur.com/i2obdi6.png</Icon>
+</Container>
