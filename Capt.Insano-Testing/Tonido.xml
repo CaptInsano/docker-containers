@@ -18,13 +18,6 @@
       </Port>
     </Publish>
   </Networking>
-  <Data>
-    <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/usr/local/tonido</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-  </Data>
   <WebUI>http://[IP]:[PORT:10001]/</WebUI>
   <Icon>http://i.imgur.com/i2obdi6.png</Icon>
 </Container>
