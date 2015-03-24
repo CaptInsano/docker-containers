@@ -2,4 +2,4 @@
 
 echo "starting tonido"
 
-exit
+exec /usr/local/tonido/tonido.sh start

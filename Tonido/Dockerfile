@@ -49,4 +49,4 @@ RUN chmod 777 /docker-*.sh
 # Expose Port
 EXPOSE 10001
 
-CMD ["/bin/bash"]
+CMD ["/docker-start.sh"]
