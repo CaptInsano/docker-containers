@@ -1,7 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
-# Continue Docker Start
-chown -R nobody:users /usr/local/tonido
+echo "starting tonido"
 
-
-/usr/local/tonido/tonido.sh start
+/bin/bash "/usr/local/tonido/tonido.sh start"
