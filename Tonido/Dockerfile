@@ -49,8 +49,5 @@ RUN chmod 777 /docker-*.sh
 # Expose Port
 EXPOSE 10001
 
-# Expose Tonido Folder
-VOLUME ["/usr/local/tonido"]
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-start.sh"]
