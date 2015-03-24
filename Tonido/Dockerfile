@@ -50,4 +50,4 @@ RUN chmod 777 /docker-*.sh
 EXPOSE 10001
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/docker-start.sh"]
+CMD ["/usr/local/tonido/tonido.sh start"]
