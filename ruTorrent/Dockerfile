@@ -50,7 +50,7 @@ COPY htpasswd /htpasswd
 RUN mkdir /config
 
 RUN \
-    cd /config &&\
+    cd /var/www &&\
     # install rutorrent
     wget -q -O rutorrent.tar.gz $RUTORRENT_URI &&\
     echo "$RUTORRENT_SHA1  rutorrent.tar.gz" | sha1sum -c - &&\
@@ -62,10 +62,8 @@ RUN \
     echo "$RUTORRENT_PLUGINS_SHA1  plugins.tar.gz" | sha1sum -c - &&\
     tar xf plugins.tar.gz &&\
     rm plugins.tar.gz &&\	
-	rm /config/rutorrent/conf/config.php &&\
-	cp /config.php /config/rutorrent/conf/config.php &&\
-    #create symbolic link to rutorrent install for nginx
-	ln -s /config/rutorrent /var/www/rutorrent &&\
+	rm /var/www/rutorrent/conf/config.php &&\
+	cp /config.php /var/www/rutorrent/conf/config.php &&\
 	# correct files permission
     chmod -R 777 /var/www &&\
     chown -R www-data. /var/www
@@ -87,7 +85,7 @@ RUN adduser --quiet --disabled-password --home /config --gecos "" --uid 1000 tor
 	
 COPY rtorrent.rc /rtorrent.rc
 RUN chown -R torrent /config &&\
-	chmod -R 777 /config 
+	chmod -R 777 /config
 	
 RUN mkdir /download
 RUN chown -R torrent /download &&\
