@@ -1,8 +1,13 @@
 #!/bin/sh
 
-# Move ruTorrent into /config and Symbolic Link for nginx
-	mv -R /var/www/rutorrent /config/rutorrent
+# Move ruTorrent into /config and Symbolic Link for nginx (if needed)
+if [ -f /config/rutorrent/index.html ]; then
+	echo "ruTorrent already in /config"
+else
+	echo "Moving ruTorrent into /config"
+	mv /var/www/rutorrent /config/rutorrent
 	ln -s /config/rutorrent /var/www/rutorrent
+fi
 
 # Does the user want the edge version?
 	/bin/bash /edge.sh
