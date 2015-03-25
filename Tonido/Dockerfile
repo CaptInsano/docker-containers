@@ -27,6 +27,7 @@ RUN \
   apt-get update -q && \
   apt-get -qy install\
   wget\
+  tmux\
   libjpeg8\
   libfontconfig1\
   curl && \
@@ -52,4 +53,4 @@ RUN chmod 777 /docker-*.sh
 # Expose Port
 EXPOSE 10001
 
-CMD ["/usr/local/tonido/tonido.sh start"]
+CMD ["/docker-start.sh"]

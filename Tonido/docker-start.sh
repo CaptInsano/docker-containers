@@ -2,4 +2,4 @@
 
 echo "starting tonido"
 
-exec /usr/local/tonido/tonido.sh start
+usr/bin/tmux new-session -d /usr/local/tonido/tonidoconsole
