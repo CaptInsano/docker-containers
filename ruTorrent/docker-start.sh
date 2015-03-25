@@ -6,13 +6,15 @@ if [ -f /config/rutorrent/index.html ]; then
 else
 	echo "Moving ruTorrent into /config"
 	mv /var/www/rutorrent /config/rutorrent
-	ln -s /config/rutorrent /var/www/rutorrent
 fi
 
 # Does the user want the edge version?
 	/bin/bash /edge.sh
 
-# Set up BASIC Auth and SSL
+	rm -R /var/www/rutorrent 
+	ln -s /config/rutorrent /var/www/rutorrent
+	
+	# Set up BASIC Auth and SSL
 	/bin/bash /ssl.sh
 
 # Check if config exists. If not, copy in the sample config
