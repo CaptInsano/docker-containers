@@ -10,7 +10,7 @@ fi
 
 # Does the user want the edge version?
 	/bin/bash /edge.sh
-
+	wait
 	rm -R /var/www/rutorrent 
 	ln -s /config/rutorrent /var/www/rutorrent
 	
