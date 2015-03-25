@@ -17,6 +17,9 @@ fi
 # Continue Docker Start
 chown -R torrent:users /config
 chmod -R 777 /config
+
+chown -R torrent:www-data /config/rutorrent
+
 chown -R torrent:users /download
 chmod -R 777 /download
 
