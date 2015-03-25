@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
+ENV LD_LIBRARY_PATH=/usr/local/tonido
 
 # Configure user nobody to match unRAID's settings
  RUN \
@@ -26,6 +27,8 @@ RUN \
   apt-get update -q && \
   apt-get -qy install\
   wget\
+  libjpeg8\
+  libfontconfig1\
   curl && \
   apt-get clean -y && \
   rm -rf /var/lib/apt/lists/* && \
