@@ -22,6 +22,11 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 #Make Directory for Tonido
 RUN mkdir /usr/local/tonido
 
+#temp fix for tonido servers being down
+ADD tonido64.tar.gz /usr/local/tonido/tonido64.tar.gz
+RUN cd /usr/local/tonido && \
+    tar -zxvf tonido64.tar.gz && \
+
 #Install Tonido
 RUN \
   apt-get update -q && \
@@ -32,11 +37,12 @@ RUN \
   libfontconfig1\
   curl && \
   apt-get clean -y && \
-  rm -rf /var/lib/apt/lists/* && \
-  cd /usr/local/tonido && \
-  wget --no-check-certificate -O tonido64.tar.gz http://www.tonido.com/download.php?tonido64.tar.gz && \
-  tar -zxvf tonido64.tar.gz && \
-  rm tonido64.tar.gz
+  rm -rf /var/lib/apt/lists/*
+# after temp fix, remove this line and re-add "&& \" above
+#  cd /usr/local/tonido && \
+#  wget --no-check-certificate -O tonido64.tar.gz http://www.tonido.com/download.php?tonido64.tar.gz && \
+#  tar -zxvf tonido64.tar.gz && \
+#  rm tonido64.tar.gz
   
 # grab gosu for easy step-down from root
 RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
