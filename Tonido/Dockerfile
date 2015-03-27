@@ -53,4 +53,13 @@ RUN chmod 777 /docker-*.sh
 # Expose Port
 EXPOSE 10001
 
-CMD ["/docker-start.sh"]
+# Add firstrun.sh to execute during container startup
+ADD firstrun.sh /etc/my_init.d/firstrun.sh
+RUN chmod +x /etc/my_init.d/firstrun.sh
+
+# Add tonido to runit
+RUN mkdir /etc/service/tonido
+ADD tonido.sh /etc/service/tonido/run
+RUN chmod +x /etc/service/tonido/run
+
+CMD ["/sbin/my_init"]
