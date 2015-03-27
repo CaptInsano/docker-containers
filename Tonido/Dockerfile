@@ -25,7 +25,7 @@ RUN mkdir /usr/local/tonido
 #temp fix for tonido servers being down
 ADD tonido64.tar.gz /usr/local/tonido/tonido64.tar.gz
 RUN cd /usr/local/tonido && \
-    tar -zxvf tonido64.tar.gz && \
+    tar -zxvf tonido64.tar.gz
 
 #Install Tonido
 RUN \
