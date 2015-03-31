@@ -13,9 +13,8 @@ ENV LD_LIBRARY_PATH=/usr/local/tonido
  RUN \
  usermod -u 99 nobody && \
  usermod -g 100 nobody && \
- mkdir /config && \
  usermod -d /config nobody && \
- chown -R nobody:users /config
+ chown -R nobody:users /home
  
  # Disable SSH
 RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
@@ -39,26 +38,15 @@ RUN \
   tar -zxvf tonido64.tar.gz && \
   rm tonido64.tar.gz  
   
-# grab gosu for easy step-down from root
-RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
-RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
-    && curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
-    && gpg --verify /usr/local/bin/gosu.asc \
-    && rm /usr/local/bin/gosu.asc \
-    && chmod +x /usr/local/bin/gosu
 	
 #Make Directory to mount unRAID filesystem
-RUN mkdir /mount
+RUN mkdir /mount /config
 
 #Expose Volumes
 VOLUME /mount /config
 
 # Expose Port
 EXPOSE 10001
-
-# Add firstrun.sh to execute during container startup
-ADD firstrun.sh /etc/my_init.d/firstrun.sh
-RUN chmod +x /etc/my_init.d/firstrun.sh
 
 # Add tonido to runit
 RUN mkdir /etc/service/tonido
