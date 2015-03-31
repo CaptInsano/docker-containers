@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "Starting Tonido via runit"
-/usr/local/tonido/tonidoconsole
+gosu nobody /usr/local/tonido/tonidoconsole
