@@ -40,10 +40,10 @@ RUN \
   
 	
 #Make Directory to mount unRAID filesystem
-RUN mkdir /mount /config
+RUN mkdir /unRAID /config
 
 #Expose Volumes
-VOLUME /mount /config
+VOLUME /unRAID /config
 
 # Expose Port
 EXPOSE 10001
