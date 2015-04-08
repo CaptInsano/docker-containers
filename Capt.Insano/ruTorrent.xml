@@ -2,7 +2,7 @@
 <Container>
   <Name>ruTorrent</Name>
   <Description>
-    [br]This is a container for rTorrent (a powerful and flexible torrent client) and ruTorrent (a web based frontend for rTorrent). ruTorrent contains many plugins to improve rTorrent use including RSS support.[br]
+    This is a container for rTorrent (a powerful and flexible torrent client) and ruTorrent (a web based frontend for rTorrent). ruTorrent contains many plugins to improve rTorrent use including RSS support.[br]
     [b][span style='color: #E80000;']Directions:[/span][/b][br]
 	[b]Mount the internal directory ""/config"" to a location on your cache for SSL certs, rTorrent config and session files[br]
 	[b]Mount the internal directory ""/download"" to a location on your array for rTorrent downloads[br]
