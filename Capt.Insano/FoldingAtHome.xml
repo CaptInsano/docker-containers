@@ -3,12 +3,15 @@
   <Name>FoldingAtHome</Name>
   <Description>
     FoldingAtHome is a project ran by Stanford University to network thousands of computers together, using them to work out the folding of proteins to aid in the research of Alzheimer's, Huntington's, Parkinson's, and many cancers.[br][br]
-    [b][span style='color: #E80000;']Directions:[/span][/b][br]
+    [b][span style='color: #E80000;']WARNING: Using this container will increase CPU usage, continue @ own risk[/span][/b][br]
+	[b][span style='color: #E80000;']Directions:[/span][/b][br]
 	[b]Edit the config.xml file with your preferences (Username/Team etc.)[br]
 	[b]The program can be controlled by FAHControl App from http://folding.stanford.edu/.[br]
 	[b]The WebUI is accessible through  http://IPADDRESS:7396.[br]
     [b]/etc/fahclient[/b] : this path is used to store the configuration file for FAHClient.[br]
   </Description>
+  <Overview>FoldingAtHome is a project ran by Stanford University to network thousands of computers together, using them to work out the folding of proteins to aid in the research of Alzheimer's, Huntington's, Parkinson's, and many cancers.</Overview>
+  <Support>http://lime-technology.com/forum/index.php?topic=37729.0</Support>
   <Registry>https://registry.hub.docker.com/u/captinsano/foldingathome</Registry>
   <Repository>captinsano/foldingathome</Repository>
   <BindTime>true</BindTime>

@@ -8,8 +8,10 @@
 	See http://www.tonido.com for details
 	[br]
 	[b]The WebUI is accessible through  http://IPADDRESS:10001[br]
-	
   </Description>
+  <Overview>Tonido Server allows you to access all your files on your computer from a web browser, smartphone, tablet or even DLNA enabled devices. No setup necessary.
+  </Overview>
+  <Support>http://lime-technology.com/forum/index.php?topic=39065.0</Support>
   <Registry>https://registry.hub.docker.com/u/captinsano/tonido/</Registry>
   <Repository>captinsano/tonido</Repository>
   <BindTime>true</BindTime>
