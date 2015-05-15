@@ -11,7 +11,7 @@
     [b]rTorrent config is done by editing the .rtorrent.rc file in /config[br]
 	[b]Change EDGE=1 (under Advanced View) if you would prefer the latest GIT version of ruTorrent and Plugins[br]
   </Description>
-  <Overview>ruTorrent Container is a powerful and flexible torrent solution(including RSS support)</Overview>
+  <Overview>ruTorrent Container is a powerful and flexible torrent solution(including RSS support) based on older rTorrent v0.9.2</Overview>
   <Support>http://lime-technology.com/forum/index.php?topic=38698.0</Support>
   <Registry>https://registry.hub.docker.com/u/captinsano/rutorrent_0.9.2/</Registry>
   <Repository>captinsano/rutorrent_0.9.2</Repository>
