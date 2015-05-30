@@ -30,7 +30,7 @@ RUN \
         php5-geoip\
         rtorrent\
         tmux\
-        unrar-free\
+        unrar\
         unzip\
         git\
 		wget &&\
