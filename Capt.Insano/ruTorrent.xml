@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
+<Beta>False</Beta>
+<Category>Downloaders:</Category>
   <Name>ruTorrent</Name>
   <Description>
     This is a container for rTorrent (a powerful and flexible torrent client) and ruTorrent (a web based frontend for rTorrent). ruTorrent contains many plugins to improve rTorrent use including RSS support.[br]
