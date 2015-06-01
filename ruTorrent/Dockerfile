@@ -75,6 +75,10 @@ RUN rm /etc/nginx/sites-available/* &&\
 COPY nginx /etc/nginx
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/rutorrent
 
+# copy php.ini
+RUN rm /etc/php5/fpm/php.ini
+COPY php.ini /etc/php5/fpm/php.ini
+
 #set default umask to 002
 RUN rm /etc/login.defs
 COPY login.defs /etc/login.defs
