@@ -41,8 +41,8 @@ VOLUME ["/DATA/music"]
 
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php5/php.ini && \
-sed -i 's/nginx:x:99:100:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:Linux User,,,:\/DATA:\/bin\/bash/g' /etc/passwd && \
-sed -i 's/nginx:x:99:100:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:Linux User,,,:\/DATA:\/bin\/bash/g' /etc/passwd-
+sed -i 's/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:Linux User,,,:\/DATA:\/bin\/bash/g' /etc/passwd && \
+sed -i 's/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:Linux User,,,:\/DATA:\/bin\/bash/g' /etc/passwd-
  
 
 ADD files/nginx.conf /etc/nginx/
@@ -57,7 +57,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN su nginx -c "git clone  https://github.com/phanan/koel /DATA/htdocs &&\
     cd /DATA/htdocs && \
     npm install && \
-    composer config github-oauth.github.com d3380108c05c2ce20bd86fdd67477d1d2f98cbd2 &&\
+    composer config github-oauth.github.com fa708ce99572d8dc2e28b6f5ef8f12f229751dc4 &&\
     composer install"
  
 
