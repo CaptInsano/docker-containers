@@ -19,7 +19,7 @@ RUN apk update \
     php5-pdo_mysql php5-mysqli \
     php5-gd php5-iconv php5-mcrypt \
     php5-mysql php5-curl php5-opcache php5-ctype php5-apcu \
-    php5-intl php5-bcmath php5-dom php5-xmlreader php5-xsl mysql-client \
+    php5-intl php5-bcmath php5-dom php5-xmlreader php5-xsl php5-exif mysql-client \
     git build-base python \
     ffmpeg inotify-tools sudo curl \
     && apk add -u musl
@@ -47,6 +47,7 @@ sed -i 's/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:10
 
 ADD files/nginx.conf /etc/nginx/
 ADD files/php-fpm.conf /etc/php/
+ADD files/php.ini /etc/php5/php.ini
 ADD files/run.sh /
 
 RUN chmod +x /run.sh && chown -R nginx:nginx /DATA
@@ -68,7 +69,6 @@ COPY files/.env /DATA/htdocs/.env
 
 RUN chown nginx:nginx /DATA/htdocs/.env
 
-#RUN su nginx -c "cd /DATA/htdocs && php artisan init"
 
 EXPOSE 80
 CMD ["/run.sh"]
